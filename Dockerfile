@@ -28,5 +28,9 @@ WORKDIR /app
 # Copie arquivos do host para o contêiner (se necessário)
 COPY . /app
 
+# Script de inicialização
+COPY octopus.sh /octopus.sh
+RUN chmod +x /octopus.sh
+
 # Comando padrão para rodar quando o contêiner iniciar
-CMD ["bash"]
+CMD ["/octopus.sh"]
