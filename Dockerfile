@@ -9,8 +9,18 @@ RUN apt-get update && apt-get install -y \
     curl \
     wget \
     vim \
+    build-essential \
     # Adicione outros pacotes que você precisa aqui
     && apt-get clean
+
+# Instale o Go (Golang)
+RUN wget https://go.dev/dl/go1.22.4.linux-amd64.tar.gz \
+    && tar -C /usr/local -xzf go1.22.4.linux-amd64.tar.gz \
+    && rm go1.22.4.linux-amd64.tar.gz
+
+# Defina as variáveis de ambiente para o Go
+ENV PATH="/usr/local/go/bin:${PATH}"
+ENV GOPATH="/go"
 
 # Defina o diretório de trabalho
 WORKDIR /app
