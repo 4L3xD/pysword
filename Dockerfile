@@ -10,6 +10,11 @@ RUN apt-get update && apt-get install -y \
     wget \
     vim \
     build-essential \
+    git \
+    unzip \
+    python3 \
+    python3-pip \
+    apt-utils \
     # Adicione outros pacotes que você precisa aqui
     && apt-get clean
 
@@ -20,21 +25,13 @@ RUN wget https://go.dev/dl/go1.22.4.linux-amd64.tar.gz \
 ENV PATH="/usr/local/go/bin:${PATH}"
 ENV GOPATH="/go"
 
-# Instalação de ferramentas de Pentest
-# RUN go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
-# RUN go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-# RUN go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-
 # Defina o diretório de trabalho
 WORKDIR /app
 
 # Copie arquivos do host para o contêiner (se necessário)
 COPY . /app
-
-# Script de inicialização
-# COPY octopus.sh /octopus.sh
-# RUN chmod +x /octopus.sh
-# RUN ./octopus.sh
+RUN chmod +x ./app/octopus.sh
+RUN ./app/octopus.sh
 
 # Inicia o terminal interativo (TTY)
 CMD ["/bin/bash"]
