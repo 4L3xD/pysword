@@ -1,10 +1,9 @@
 # pysword
 
-Build the pysword image from Dockerfile
-`docker build -t pysword .`
+Start the project
+`chmod +x start.sh stop.sh`
 
-Execute a based image container 
-`docker run -it pysword`
+`./start.sh`
 
 __
 Definition:

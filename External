@@ -17,10 +17,13 @@ RUN apt-get update && apt-get install -y \
 RUN wget https://go.dev/dl/go1.22.4.linux-amd64.tar.gz \
     && tar -C /usr/local -xzf go1.22.4.linux-amd64.tar.gz \
     && rm go1.22.4.linux-amd64.tar.gz
-
-# Defina as variáveis de ambiente para o Go
 ENV PATH="/usr/local/go/bin:${PATH}"
 ENV GOPATH="/go"
+
+# Instalação de ferramentas de Pentest
+# RUN go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+# RUN go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+# RUN go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
 
 # Defina o diretório de trabalho
 WORKDIR /app
@@ -29,9 +32,9 @@ WORKDIR /app
 COPY . /app
 
 # Script de inicialização
-COPY octopus.sh /octopus.sh
-RUN chmod +x /octopus.sh
-RUN ./octopus.sh
+# COPY octopus.sh /octopus.sh
+# RUN chmod +x /octopus.sh
+# RUN ./octopus.sh
 
-# Comando padrão para rodar quando o contêiner iniciar
+# Inicia o terminal interativo (TTY)
 CMD ["/bin/bash"]
