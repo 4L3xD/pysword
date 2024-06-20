@@ -1,30 +1,28 @@
 #!/bin/bash
-
 docker ps -la
 echo -e "Exit mode:\n"
-echo "1. Stop all containers"
-echo -e "2. Stop and remove all containers\n"
+echo "1. Stop container"
+echo -e "2. Stop and remove container\n"
 read -p "Type the correponding number: " choice
 
 case $choice in
     1)
-        echo "Stopping all running containers..."
-        docker stop $(docker ps -q)
-
-        echo "All containers have been stopped and removed."
+        echo "Stopping running container..."
+        docker stop wstg
+        echo "The container has been stopped."
         docker ps -la
         ;;
     2)
-        echo "Stopping all running containers..."
-        docker stop $(docker ps -q)
+        echo "Stopping running container..."
+        docker stop wstg
 
         echo "Removing all containers..."
-        docker rm $(docker ps -a -q)
+        docker rm wstg
 
-        echo "All containers have been stopped and removed."
+        echo "The container has been stopped and removed."
         docker ps -la
         ;;
     *)
-        echo "Invalid option. Please, select a valid option"
+        echo "Invalid option. Please, select a valid option. Execute the script again."
         ;;
 esac
